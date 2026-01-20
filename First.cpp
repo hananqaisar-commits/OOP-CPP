@@ -81,7 +81,7 @@ int main()
     car[1].color = "Black";
     car[1].number = 5861;
 
-    for (int i = Car1; i <= Car2; i++) // car1 valu is 0 and car2 value is 1 so, car2 is condition
+    for (int i = Car1; i <= Car2; i++) // car1 vale is 0 and car2 value is 1 so, car2 is condition
     {
         car[i].setprice(price[i]); //first i will set price and owner then call display function. This is setter function call; passing argument
         car[i].setowner(owner[i]);

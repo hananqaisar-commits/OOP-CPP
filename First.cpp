@@ -50,7 +50,6 @@ public:
         cout << "This is Constructor" << endl;
     }
 };
-
 // Enum is optional here, but kept for increase understanding and readability
 enum CARS
 {

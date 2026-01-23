@@ -30,7 +30,7 @@ public:
     }
 
     //3 type is:
-    car()
+    car();
 };
 
 int main()

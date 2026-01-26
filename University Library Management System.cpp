@@ -61,16 +61,22 @@ void Book ::displayBookInfo()
     cout << "Book Id is " << getid() << endl;
     cout << "Book Price is " << price << endl;
 }
+
+// class Magzine : public LibraryItem
+// {
+// private:
+
+// };
 int main()
 {
-    
+
     Book b1("Hanan Qaisar", 7099), b2("Ali Hamza", 5789);
     b1.setTitle();
     b2.setTitle();
     b1.displayBookInfo();
     b2.displayBookInfo();
 
-    LibraryItem ::getTotal();
+    LibraryItem :: getTotal();
 
     return 0;
 }

@@ -1,3 +1,3 @@
 # OOP <br>
-It include Basic School management programme <br>
-And mostly OOP Basics
+OOP Basics <br>
+Basic programmes

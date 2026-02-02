@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <string>
-#include <windows.h>
+#include <windows.h> //for Sleep use in my programme
 using namespace std;
 class BankAccount
 {
@@ -37,13 +37,13 @@ public:
 void BankAccount ::deposit(int deposit)
 {
     char action;
-    cout << "Enter cash in right top area\n";
+    cout << "Deposit cash in right top box of machine\n";
     cout << "Enter d after done: ";
     cin >> action;
     if (action == 'D' || action == 'd')
     {
         cout << "Processing, please wait..." << endl;
-        Sleep(2000);
+        Sleep(3000);
         if (deposit < 0)
         {
             cout << "Sorry! This amount is not deposited" << endl;
@@ -56,6 +56,9 @@ void BankAccount ::deposit(int deposit)
         else
             cout << "Invalid" << endl;
     }
+    else{
+        cout<<"Invalid"<<endl;
+    }
 }
 
 void BankAccount ::withdraw(int withdraw)
@@ -64,11 +67,12 @@ void BankAccount ::withdraw(int withdraw)
     Sleep(2000);
     if (withdraw > balance)
     {
-        cout << "Sorry! " << withdraw << " amount is not in your account" << endl;
+        cout << "Sorry! " << withdraw << " rupees is not in your account" << endl;
     }
     else if (withdraw < balance && withdraw > 0 || withdraw == balance)
     {
-        cout<<"Take yout cash\n";
+        cout << "Take your cash\n";
+        Sleep(2000);
         cout << withdraw << " rupees is withdraw sucessfully" << endl;
         balance -= withdraw;
     }
@@ -171,6 +175,7 @@ int BankAccount ::insertCard()
     int insert;
     cout << "=====Welcome to ATM=====\nInsert your card" << endl;
     cout << "1 for insert card\n0 for nothing" << endl;
+    cout<<"->";
     cin >> insert;
     if (insert == 1)
     {
@@ -201,17 +206,18 @@ int main()
         else
         {
             cout << "\n====ATM DISPLAY====\n";
-            cout << "Choose one option:" << endl
+            cout << "Choose option:" << endl
                  << "1. Deposit" << endl
                  << "2. Withdraw" << endl
                  << "3. Check Balabnce" << endl
                  << "4. Display detail" << endl
                  << "0. End" << endl;
+                 cout<<"->";
 
             do
             {
                 cin >> choice;
-                if (choice < 0 || choice > 5)
+                if (choice < 0 || choice > 4)
                 {
                     cout << "Enter valid Choice" << endl;
                 }
@@ -220,7 +226,7 @@ int main()
                     account1.choice(choice);
                     if (choice != 0)
                     {
-                        cout << "Choose next option:" << endl;
+                        cout << "Choose next option:" << endl<<"->";
                     }
                 }
             } while (choice != 0);

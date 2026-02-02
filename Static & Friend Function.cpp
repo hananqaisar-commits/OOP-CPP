@@ -18,17 +18,20 @@ public:
     void setname();
     string getname();
     void setrollNo();
+    int getrollNo();
     void setmarks();
-    void display(void);
+    int getmarks();
+    void display(int n);
 };
 
 int Student ::totalStudents;
-//  void Student :: totalStudents=1; //but if i want to initilize then this is method
+//  void Student :: totalStudents=1;--->if i want to initilize then this is method
 
 void Student ::setname()
 {
 
     cout << "Enter name: ";
+    cin.ignore();
     getline(cin, name);
 }
 string Student ::getname()
@@ -41,49 +44,72 @@ void Student ::setrollNo()
     cin >> rollNo;
     cin.ignore();
 }
+int Student ::getrollNo()
+{
+    return rollNo;
+}
 void Student ::setmarks()
 {
     cout << "Enter marks: ";
     cin >> marks;
+}
+ int Student ::getmarks()
+{
+    return marks;
 }
 
 void compareMarks(Student s1, Student s2)
 {
     if (s1.marks > s2.marks)
     {
-        cout << "Student " << s1.name << " has more marks then Student " << s2.name << endl;
+        cout <<s1.name << " has more marks then Student " << s2.name << endl;
     }
     else if (s1.marks < s2.marks)
     {
-        cout << "Student " << s1.name << " has less marks then Student " << s2.name << endl;
+        cout << s1.name << " has less marks then Student " << s2.name << endl;
     }
     else
         cout << "Both have equal marks" << endl;
 }
-void Student ::display(void)
+void Student ::display(int n)
 {
-    cout << "Student " << totalStudents << " name " << name << endl;
-    cout << "Student " << totalStudents << " has marks " << marks << endl;
-    cout << "Student " << totalStudents << " Roll number " << rollNo << endl;
+    cout << "Student " << n << " name " << getname() << endl;
+    cout << "Student " << n << " has marks " << getmarks() << endl;
+    cout << "Student " << n << " Roll number " << getrollNo() << endl;
 }
 int main()
 {
 
-    Student s1, s2;
-    s1.setname();
-    s1.setmarks();
-    s1.setrollNo();
+    // Student s1, s2;
+    // s1.setname();
+    // s1.setmarks();
+    // s1.setrollNo();
 
-    s2.setname();
-    s2.setmarks();
-    s2.setrollNo();
+    // s2.setname();
+    // s2.setmarks();
+    // s2.setrollNo();
 
-    s1.display();
-    s2.display();
+    // s1.display();
+    // s2.display();
 
-    compareMarks(s1, s2);
+    int total;
+    cout << "Enter number of student: ";
+    cin >> total;
+    Student s[total]; // this is object array of Student
+    for (int i = 1; i <= total; i++)
+    {
+        s[i].setname();
+        s[i].setmarks();
+        s[i].setrollNo();
+        s[i].display(i);
+    }
 
-    cout<<"Total studens is "<<Student :: totalStudents <<endl;//it is way to access freind function in main bode
+    for (int i = 0; i < total; i++)
+    {
+        compareMarks(s[i], s[i + 1]);
+    }
+
+    cout << "Total studens is " << Student ::totalStudents << endl; // it is way to access freind function in main bode
 
     return 0;
 }

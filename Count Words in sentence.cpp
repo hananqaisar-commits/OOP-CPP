@@ -5,11 +5,12 @@ using namespace std;
 int main()
 {
     // char word[1000];
+    // cin.getline(word, 1000);
+    
     string word;
     cout << "Enter word: ";
     getline(cin, word);
-    // cin.getline(word, 1000);
-
+    
     int count = 1;
     for (int i = 0; word[i] != '\0'; i++)
     {

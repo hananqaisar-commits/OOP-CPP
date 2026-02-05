@@ -8,38 +8,55 @@ class TollBooth
     double totalcash;
 
 public:
-    unsigned int totalcars;
-    string type; // vehcle type
+    static int totalcars;//by default it is asinged to 0
+    int type; // vehcle type
 
     TollBooth()
     {
-        totalcars = 0;
         totalcash = 0;
     }
-    void payingcar();
+    void set_name(string name)
+    {
+        collector_name = name;
+    }
+    string get_name()
+    {
+        return collector_name;
+    }
+    void set_shift(string shift)
+    {
+        this->shift = shift;
+    }
+    string get_shift()
+    {
+        return shift;
+    }
+    bool payingcar();
     void nopaycar();
     void report();
-    void input();
+    void inputCarType();
     void vehcleType();
     void Rates_chart();
+    void choice();
 };
+int TollBooth::totalcars ;
 
-void TollBooth ::payingcar()
+bool TollBooth ::payingcar()
 {
 
-    totalcars++;
+    ++totalcars;
 }
 void TollBooth ::nopaycar()
 {
-    totalcars++;
+    ++totalcars;
     totalcash = totalcash; // remain same
 }
 
 void TollBooth ::report()
 {
     cout << "\n====== Toll Booth Report ======\n";
-    cout << "Collector name: : " << collector_name << endl;
-    cout << "Shift: : " << shift << endl;
+    cout << "Collector name: : " << get_name() << endl;
+    cout << "Shift: : " << get_shift() << endl;
     cout << "Total cash: " << totalcash << endl;
     cout << "Total cars: " << totalcars << endl;
     cout << "Average tax on every car: " << totalcash / totalcars << endl;
@@ -47,64 +64,104 @@ void TollBooth ::report()
 void TollBooth ::vehcleType()
 {
 
-    cout << "Enter vechile (e.g: car, truck, bus): ";
+    cout << "Enter vechile (e.g:1. car,2. truck,3. bus): ";
     cin >> type;
 }
 void TollBooth ::Rates_chart()
+
 {
+
     cout << "Bike--------->0.00 rs/-\n";
-    cout << "Car--------->0.35 rs/-\n";
-    cout << "Vagon--------->0.35 rs/-\n";
-    cout << "Bus--------->0.50 rs/-\n";
-    cout << "Truck--------->0.80 rs/-\n";
-    cout << "Others--------->0.35 rs/-\n";
+    cout << "Car---------->0.35 rs/-\n";
+    cout << "Vagon-------->0.45 rs/-\n";
+    cout << "Bus---------->0.50 rs/-\n";
+    cout << "Truck-------->0.80 rs/-\n";
+    cout << "Others------->0.15 rs/-\n";
 }
-void TollBooth ::input()
+
+void TollBooth ::inputCarType()
 {
-    char choice;
-    cin >> choice;
-    vehcleType();
 
-    do
+    if (type == 1)
     {
+        totalcash += 0.00;
+    }
+    else if (type == 2)
+    {
+        totalcash += 0.35;
+    }
+    else if (type == 3)
+    {
+        totalcash += 0.45;
+    }
+    else if (type == 4)
+    {
+        totalcash += 0.50;
+    }
+    else if (type == 5)
+    {
+        totalcash += 0.80;
+    }
+    else if (type == 6)
+    {
+        totalcash += 0.15;
+    }
+    else
+    {
+        totalcash += 0;
+    }
+}
 
-        if (type == "car" || type == "Car" || type == "CAR")
+void TollBooth ::choice()
+{
+
+    cout << "Enter: " << endl
+         << "0.  Exit\n1.  Bike\n2.  Car\n3.  Vagon\n4.  Bus\n5.  Truck\n6.  Others\n->";
+    cin >> type;
+
+    while (type != 0)
+    {
+        if (payingcar())
         {
-            totalcash = 0.35;
-        }
-        else if (type == "bus" || type == "Bus" || type == "BUS")
-        {
-            totalcash == 0.50;
-        }
-        else if (type == "truck" || type == "Truck" || type == "TRUCK")
-        {
-            totalcash == 0.80;
-        }
-        else if (type == "bike" || type == "Bike" || type == "BIKE")
-        {
-            totalcash == 0;
-        }
-        else if (type == "vagon" || type == "Vagon" || type == "VAGON")
-        {
-            totalcash = 0.45;
+            inputCarType();
+            cout << "Enter next (0 to exit): ";
+            cin >> type;
         }
         else
         {
-            totalcash = 0.10;
+            return;
         }
-
-        payingcar();
-
-        cout << "Enter next car: " << endl;
-        cin >> choice;
-        
     }
-    while (choice != 'e' && choice != 'E');
 }
 int main()
 {
-    TollBooth tool;
-    tool.input();
+    string name;
+    string shift;
+    cout << "Enter collector name: ";
+    getline(cin, name);
+
+    cout << "Enter shift: ";
+    cin >> shift;
+
+    // object
+    TollBooth tool1, tool2, tool3;
+    cout << "Enter collector name: ";
+    tool1.set_name(name);
+    cout << "Enter shift: ";
+    tool1.set_shift(shift);
+    tool2.Rates_chart();
+    tool2.choice();
+    tool2.report();
+
+   
+    tool2.Rates_chart();
+    tool2.choice();
+    tool2.report();
+
+   
+    tool3.Rates_chart();
+    tool3.choice();
+    tool3.report();
 
     return 0;
 }

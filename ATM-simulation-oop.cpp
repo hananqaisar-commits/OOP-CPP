@@ -8,6 +8,9 @@
 #include <iostream>
 #include <string>
 #include <windows.h> //for Sleep use in my programme
+#include <stdlib.h>
+#include <time.h>
+
 using namespace std;
 class BankAccount
 {
@@ -33,17 +36,60 @@ public:
     void choice(int n);
     bool checkPin();
     int insertCard();
+    void loader_dot();
+    void loader_dot_percentage();
 };
+void BankAccount ::loader_dot()
+{
+    int count = 0;
+    srand(time(NULL));
+    count = (rand() % 5 + 1); // range 1-5
+    cout << "Processing, please wait ";
+
+    for (int i = 0; i < count; i++) // max will be 4 and min will be 1
+    {
+        for (int j = 0; j < 6; j++)
+        {
+            cout << ".";
+            Sleep(250);
+        }
+        cout << "\b\b\b\b\b\b";
+        cout << "      ";       // it overwrite the 6 backspaces.It help me erace previous 6 dots.
+        cout << "\b\b\b\b\b\b"; // now it move back to 6 spaces again for next animation
+    }
+    cout << "\n";
+}
+void BankAccount ::loader_dot_percentage()
+{
+    char load[4] = {'|', '/', '-', '\\'};
+    int count = 0;
+    srand(time(NULL));
+    count = (rand() % 5 + 1); // range 1-5
+    cout << "Processing, please wait ";
+
+    for (int i = 0; i < count; i++) // max will be 4 and min will be 1
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            cout << load[j];
+            Sleep(250);
+            cout << "\b";
+            cout << " ";  // it overwrite the 6 backspaces.It help me erace previous 6 dots.
+            cout << "\b"; // now it move back to 6 spaces again for next animation
+        }
+    }
+    cout << "\n";
+}
+
 void BankAccount ::deposit(int deposit)
 {
-    char action;
+    int action;
     cout << "Deposit cash in right top box of machine\n";
-    cout << "Enter d after done: ";
+    cout << "Enter 1 after done: ";
     cin >> action;
-    if (action == 'D' || action == 'd')
+    if (action == 1)
     {
-        cout << "Processing, please wait..." << endl;
-        Sleep(3000);
+        loader_dot();
         if (deposit < 0)
         {
             cout << "Sorry! This amount is not deposited" << endl;
@@ -56,23 +102,23 @@ void BankAccount ::deposit(int deposit)
         else
             cout << "Invalid" << endl;
     }
-    else{
-        cout<<"Invalid"<<endl;
+    else
+    {
+        cout << "Invalid" << endl;
     }
 }
 
 void BankAccount ::withdraw(int withdraw)
 {
-    cout << "Processing, please wait..." << endl;
-    Sleep(2000);
+    loader_dot();
     if (withdraw > balance)
     {
         cout << "Sorry! " << withdraw << " rupees is not in your account" << endl;
     }
     else if (withdraw < balance && withdraw > 0 || withdraw == balance)
     {
+
         cout << "Take your cash\n";
-        Sleep(2000);
         cout << withdraw << " rupees is withdraw sucessfully" << endl;
         balance -= withdraw;
     }
@@ -85,6 +131,7 @@ void BankAccount ::check()
     char ch;
     cout << "Want to check account balance?((y or n): )" << endl;
     cin >> ch;
+
     if (ch == 'Y' || ch == 'y')
     {
         cout << "Your balance is :" << balance << endl;
@@ -98,6 +145,7 @@ void BankAccount ::check()
 }
 void BankAccount ::display()
 {
+    loader_dot();
     cout << "Account Owner: " << name << endl;
     cout << "Account id " << accNo << endl;
     cout << "Balance: " << balance << endl;
@@ -110,12 +158,12 @@ bool BankAccount ::checkPin()
     while (chance > 0)
     {
         cin >> enteredpin;
-        cout << "Verifying PIN, please wait..." << endl;
-        Sleep(2000); // sleep for 2000 milisecond it is in window.h library
+        cout << "Verifying PIN ..." << endl;
+        loader_dot();
 
         if (enteredpin == pin)
         {
-            cout << "Correct pin\nAccess granted" << endl;
+            cout << "Correct pin\n\nAccess granted" << endl;
             return true;
         }
         else
@@ -135,8 +183,8 @@ void BankAccount ::choice(int n)
     switch (n)
     {
     case 0:
-        cout << "Card is coming out, please wait..." << endl;
-        Sleep(3000);
+        cout << "Card is coming out ..." << endl;
+        loader_dot_percentage();
         cout << "Take your card\n";
         Sleep(1000);
         cout << "logout sucessfull" << endl;
@@ -175,12 +223,12 @@ int BankAccount ::insertCard()
     int insert;
     cout << "=====Welcome to ATM=====\nInsert your card" << endl;
     cout << "1 for insert card\n0 for nothing" << endl;
-    cout<<"->";
+    cout << "->";
     cin >> insert;
     if (insert == 1)
     {
-        cout << "Processing your card, please wait..." << endl;
-        Sleep(3000);
+        cout << "Processing your card ..." << endl;
+        loader_dot_percentage();
         return 1;
     }
     else if (insert == 0)
@@ -196,7 +244,7 @@ int BankAccount ::insertCard()
 int main()
 {
     int choice;
-    BankAccount account1(1199, "Hanan Qaisar", 0, 1493, 3);
+    BankAccount account1(1199, "Hanan Qaisar", 0, 1234, 3);
     if (account1.insertCard())
     {
         if (!account1.checkPin())
@@ -212,7 +260,7 @@ int main()
                  << "3. Check Balabnce" << endl
                  << "4. Display detail" << endl
                  << "0. End" << endl;
-                 cout<<"->";
+            cout << "-> ";
 
             do
             {
@@ -226,7 +274,8 @@ int main()
                     account1.choice(choice);
                     if (choice != 0)
                     {
-                        cout << "Choose next option:" << endl<<"->";
+                        cout << "Choose next option:" << endl
+                             << "->";
                     }
                 }
             } while (choice != 0);

@@ -107,7 +107,7 @@ public:
 
 void show_info(int age, string name, float grade, int rollno)
 {
-    cout<<"\n--- Student INFO ---\n";
+    cout << "\n--- Student INFO ---\n";
     cout << "Name is " << name << endl;
     cout << "His age is " << age << endl;
     cout << "Grade is " << grade << endl;
@@ -115,9 +115,10 @@ void show_info(int age, string name, float grade, int rollno)
 }
 void show_info_classteacher(string subject, int id)
 {
-    cout<<"\n--- Teacher INFO ---\n";
+    cout << "\n--- Teacher INFO ---\n";
     cout << "class teacher id is: " << id << endl;
-    cout << "Class teacher subject is :\n" << subject << endl;
+    cout << "Class teacher subject is :\n"
+         << subject << endl;
 }
 
 int main()
@@ -126,7 +127,7 @@ int main()
     string subject;
     int age, rollno, id;
     float grade;
-    //Input
+    // Input
     cout << "Enter name:";
     getline(cin, name);
     cout << "Enter age:";

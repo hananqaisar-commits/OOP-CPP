@@ -48,7 +48,7 @@ void BankAccount ::loader_dot()
 
     for (int i = 0; i < count; i++) // max will be 4 and min will be 1
     {
-        for (int j = 0; j < 6; j++)
+        for (int j = 0; j < 5; j++)
         {
             cout << ".";
             Sleep(250);
@@ -83,29 +83,19 @@ void BankAccount ::loader_dot_percentage()
 
 void BankAccount ::deposit(int deposit)
 {
-    int action;
-    cout << "Deposit cash in right top box of machine\n";
-    cout << "Enter 1 after done: ";
-    cin >> action;
-    if (action == 1)
+
+    loader_dot();
+    if (deposit < 0)
     {
-        loader_dot();
-        if (deposit < 0)
-        {
-            cout << "Sorry! This amount is not deposited" << endl;
-        }
-        else if (deposit > 0)
-        {
-            balance += deposit;
-            cout << "You deposit " << deposit << " rupees sucessfully" << endl;
-        }
-        else
-            cout << "Invalid" << endl;
+        cout << "Sorry! This amount is not deposited" << endl;
+    }
+    else if (deposit > 0)
+    {
+        balance += deposit;
+        cout << "You deposit " << deposit << " rupees sucessfully" << endl;
     }
     else
-    {
         cout << "Invalid" << endl;
-    }
 }
 
 void BankAccount ::withdraw(int withdraw)

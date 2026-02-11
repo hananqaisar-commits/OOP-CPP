@@ -264,12 +264,15 @@ void BankAccount ::transferFunds()
             loader_dot();
             if (amount > 50000)
             {
-                balance = (amount * 0.03) + 60; // deduct tax 3 percent if amount is grater then 50,000
+                balance = balance - ((amount * 0.03) + 60); // deduct tax 3 percent if amount is grater then 50,000
             }
             balance = (balance - amount) + 60; // deduct amout from sender
             // here i have also add amount to user
             // then transaction must have to save for record
             cout << "Transfer Sucessful" << endl;
+
+            cout << endl;
+            display();
         }
         else if (ch == 'n' || ch == 'N')
         {
@@ -284,7 +287,8 @@ void BankAccount ::transferFunds()
 int main()
 {
     int choice;
-    BankAccount account1(1199, "Hanan Qaisar", 0, 1234, 3);
+    int pin = 1234;
+    BankAccount account1(1199, "Hanan Qaisar", 0, pin, 3);
     if (account1.insertCard())
     {
         if (!account1.checkPin())

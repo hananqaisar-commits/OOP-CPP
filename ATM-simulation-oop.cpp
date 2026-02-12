@@ -293,18 +293,31 @@ void BankAccount ::transferFunds()
 void BankAccount ::changePin()
 {
     char ch;
-    int checkPin;
+    int checkPin, new_pin;
+    int lastDigit;
 
     cout << "Want to change pin (y/n)?";
     cin >> ch;
     if (ch == 'y' || ch == 'Y')
     {
-        cout << "Enter last pin: ";
+        cout << "Enter your last pin: ";
         cin >> checkPin;
+
         if (checkPin == pin)
         {
-            pin = checkPin;
-            
+            cout << "Enter new pin: ";
+            cin >> new_pin;
+
+            lastDigit = new_pin % 10;
+            pin = new_pin;
+            cout << "Pin is sucessfully changed\nPin is changed at time " << timeGetSystemTime << endl;
+            cout << "New pin is ***" << lastDigit << endl;
+            return;
+        }
+        else
+        {
+            cout << "Pin does't match\nPermission denied" << endl;
+            return;
         }
     }
     else
@@ -334,7 +347,7 @@ int main()
             cout << "| 3. Check Balance |\n";
             cout << "| 4. Display Info  |\n";
             cout << "| 5. Transactions  |\n";
-            cout << "| 6. Change Pin   |\n";
+            cout << "| 6. Change Pin    |\n";
             cout << "| 0. Exit          |\n";
             cout << "|==================|\n";
             cout << "-> ";

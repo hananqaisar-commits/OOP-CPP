@@ -264,39 +264,49 @@ void BankAccount ::transferFunds()
     cout << "confirm details: " << endl;
     cout << "Receiver account number: " << account << endl;
     cout << "Amount is " << amount << endl;
-
-    cout << "Confirm transfer (y/n)?" << endl;
-    cin >> ch;
-    if (amount <= balance)
+    if (amount > 0)
     {
-        if (ch == 'y' || ch == 'Y')
+        cout << "Confirm transfer (y/n)?" << endl;
+        cin >> ch;
+        if (amount <= balance)
         {
-            loader_dot();
-            if (amount > 50000)
+            if (ch == 'y' || ch == 'Y')
             {
-                deduct_balance = ((amount * 0.03) + 60); // deduct tax 3 percent if amount is grater then 50,000
-            }
-            else if (amount <= 50000)
-            {
-                deduct_balance = 60; // fixed charges for transaction
-            }
-            balance -= (amount + deduct_balance); // i am adding transfer amount + taxes to deduct from my account balance
-            // deduct amout from sender
-            // here i have also add amount to user
-            // then transaction must have to save for record
-            cout << "Transfer Sucessful" << endl;
+                loader_dot();
+                if (amount > 50000)
+                {
+                    deduct_balance = ((amount * 0.03) + 60); // deduct tax 3 percent if amount is grater then 50,000
+                }
+                else if (amount <= 50000)
+                {
+                    deduct_balance = 60; // fixed charges for transaction
+                }
+                balance -= (amount + deduct_balance); // i am adding transfer amount + taxes to deduct from my account balance
+                // deduct amout from sender
+                // here i have also add amount to user
+                // then transaction must have to save for record
+                cout << "Transfer Sucessful" << endl;
 
-            display();
-            cout << endl;
+                display();
+                cout << endl;
+            }
+            else if (ch == 'n' || ch == 'N')
+            {
+                return;
+            }
+            else
+            {
+                cout << "Invalid" << endl;
+            }
         }
-        else if (ch == 'n' || ch == 'N')
+        else
         {
-            return;
+            cout << "Insufficient Amount" << endl;
         }
     }
     else
     {
-        cout << "Insufficient Amount" << endl;
+        cout << "Invalid" << endl;
     }
 }
 

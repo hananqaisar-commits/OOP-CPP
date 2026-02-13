@@ -43,6 +43,12 @@ public:
     void transferFunds();
     void changePin();
 };
+void existingAccount(string name1, string name2, string name3)
+{
+    cout << "\nAccount owner is: " << name1 << endl;
+    cout << "Account owner is: " << name2 << endl;
+    cout << "Account owner is: " << name3 << endl;
+}
 void BankAccount ::loader_dot()
 {
     int count = 0;
@@ -351,7 +357,16 @@ int main()
 {
     int choice;
     int pin = 1234;
-    BankAccount account1(1199, "Hanan Qaisar", 0, pin, 3);
+
+    string name1 = "Hanan Qaisar";
+    string name2 = "Ahtisham Qaisar";
+    string name3 = "Waqar Younis";
+    BankAccount account1(1199, name1, 0, pin, 3);
+    BankAccount account2(1200, name2, 0, pin, 3);
+    BankAccount account3(1201, name3, 0, pin, 3);
+
+    existingAccount(name1, name2, name3);
+
     if (account1.insertCard())
     {
         if (!account1.checkPin())
@@ -368,8 +383,10 @@ int main()
             cout << "| 3. Check Balance |\n";
             cout << "| 4. Display Info  |\n";
             cout << "| 5. Transactions  |\n";
-            cout << "| 6. Change Pin    |\n";
-            cout << "| 0. Exit          |\n";
+            cout << "| 6. Change Pin 
+                |\n ";
+                     cout
+                     << "| 0. Exit          |\n";
             cout << "|==================|\n";
             cout << "-> ";
 

@@ -8,8 +8,8 @@ class TollBooth
     double totalcash;
 
 public:
-    static int totalcars;//by default it is asinged to 0
-    int type; // vehcle type
+    static int totalcars; // by default it is asinged to 0
+    int type;             // vehcle type
 
     TollBooth()
     {
@@ -39,7 +39,7 @@ public:
     void Rates_chart();
     void choice();
 };
-int TollBooth::totalcars ;
+int TollBooth::totalcars;
 
 bool TollBooth ::payingcar()
 {
@@ -63,7 +63,6 @@ void TollBooth ::report()
 }
 void TollBooth ::vehcleType()
 {
-
     cout << "Enter vechile (e.g:1. car,2. truck,3. bus): ";
     cin >> type;
 }
@@ -144,21 +143,22 @@ int main()
     cin >> shift;
 
     // object
-    TollBooth tool1, tool2, tool3;
-    cout << "Enter collector name: ";
+    TollBooth tool1, tool2, tool3; // total 3 tools on motorway
+    // This code will calculate all day charges of all 3 tolls
+    cout << "Enter collector name: "; // Enter collector name
     tool1.set_name(name);
-    cout << "Enter shift: ";
+    cout << "Enter shift: "; // shift e.g: Morning, Afternoon, Evening, night
     tool1.set_shift(shift);
     tool2.Rates_chart();
     tool2.choice();
-    tool2.report();
 
-   
+    cout << "Enter details in 2 Toll: " << endl;
+
     tool2.Rates_chart();
     tool2.choice();
     tool2.report();
 
-   
+    cout << "Enter details in 3 Toll: " << endl;
     tool3.Rates_chart();
     tool3.choice();
     tool3.report();
